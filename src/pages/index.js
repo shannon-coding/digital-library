@@ -1,21 +1,67 @@
 import React from "react"
-import { Link } from "gatsby"
 
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
+import { Grid, Typography, Button } from "@material-ui/core";
+import {makeStyles} from "@material-ui/core/styles";
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+import Bookshelf from "../images/bookshelf.jpg";
+
+const useStyles = makeStyles(theme => ({
+  hero:{
+    minHeight:"100vh",
+    paddingLeft:theme.spacing(9),
+    paddingRight:theme.spacing(9),
+    backgroundImage: `url(${Bookshelf})`,
+    backgroundSize: "100%",
+    backgroundColor: theme.palette.primary.main,
+    backgroundBlendMode: "multiply",
+  },
+  heroTitle:{
+    maxWidth:'14em',
+    marginBottom:theme.spacing(4),
+  },
+  heroSubtitle:{
+    paddingTop:theme.spacing(8),
+    maxWidth: "22em",
+  },
+  button:{
+    fontSize: "28px",
+    marginTop: theme.spacing(4),
+  }
+}));
+
+function IndexPage(){
+  const classes = useStyles();
+
+  return(
+    <Layout>
+      <SEO title="Home" />
+      <Grid 
+        container
+        direction="row"
+        justifyContent="flex-start"
+        alignItems="center"
+        className={classes.hero}
+      >
+        <Grid item>
+          <Typography component="h3" variant="h3" className={classes.heroTitle}>
+            Simplifying a teacher's library, one book at a time.
+          </Typography>
+          <Typography 
+            component="h5"
+            variant="h5"
+            className={classes.heroSubtitle}>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </Typography>
+          <Button variant="outlined" color="inherit" className={classes.button}>
+            Sign Up
+          </Button>
+        </Grid>
+      </Grid>
+    </Layout>
+  );
+}
 
 export default IndexPage
