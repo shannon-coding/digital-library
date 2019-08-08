@@ -8,6 +8,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
+import Helmet from "react-helmet"
 
 import {createMuiTheme} from "@material-ui/core/styles"
 import ThemeProvider from "@material-ui/styles/ThemeProvider"
@@ -40,6 +41,9 @@ const Layout = ({ children }) => {
   return (
     <>
       <ThemeProvider theme={theme}>
+        <Helmet>
+          <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+        </Helmet>
         <Navbar siteTitle={data.site.siteMetadata.title} />
         <div>
           <main>{children}</main>
